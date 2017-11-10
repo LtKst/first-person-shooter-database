@@ -17,7 +17,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if (navMeshAgent.enabled && target != null)
+        if (target != null && navMeshAgent.enabled && Vector3.Distance(transform.position, target.position) > 5)
         {
             navMeshAgent.SetDestination(target.position);
             enemyAnimation.UpdateAnimation(navMeshAgent.speed);

@@ -32,12 +32,14 @@ public class WeaponAmmo : MonoBehaviour
         set
         {
             bulletsInMag = value;
-            UpdateMagUI();
+            UpdateAmmoUI();
         }
     }
 
     [SerializeField]
     private Text magText;
+    [SerializeField]
+    private Image magImage;
 
     [SerializeField]
     private AimDownSights aimDownSights;
@@ -79,8 +81,9 @@ public class WeaponAmmo : MonoBehaviour
         reloading = false;
     }
 
-    private void UpdateMagUI()
+    private void UpdateAmmoUI()
     {
         magText.text = bulletsInMag + "/" + magCapacity;
+        magImage.rectTransform.offsetMax = new Vector2(0f - (200f / magCapacity) * (magCapacity - bulletsInMag), magImage.rectTransform.offsetMax.y);
     }
 }

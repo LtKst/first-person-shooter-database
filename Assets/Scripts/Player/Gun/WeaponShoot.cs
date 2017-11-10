@@ -5,6 +5,7 @@ public class WeaponShoot : MonoBehaviour
 {
     private WeaponAmmo weaponAmmo;
     private WeaponAudio weaponAudio;
+    private WeaponDatabase weaponDatabase;
     private ImpactEffect impactEffect;
     private Light lightFlash;
 
@@ -30,12 +31,13 @@ public class WeaponShoot : MonoBehaviour
 
     [Header("Effects")]
     [SerializeField]
-    private ParticleSystem muzzleFlash;
+    private ParticleSystem[] shootParticleSystems;
 
     private void Awake()
     {
         weaponAmmo = GetComponent<WeaponAmmo>();
         weaponAudio = GetComponent<WeaponAudio>();
+        weaponDatabase = GetComponent<WeaponDatabase>();
 
         impactEffect = GetComponent<ImpactEffect>();
         lightFlash = GetComponent<Light>();
@@ -58,7 +60,11 @@ public class WeaponShoot : MonoBehaviour
         if (weaponAmmo.BulletsInMag > 0)
         {
             StartCoroutine(LightFlash());
-            muzzleFlash.Play();
+
+            for (int i = 0; i < shootParticleSystems.Length; i++)
+            {
+                shootParticleSystems[i].Play();
+            }
 
             Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);
             RaycastHit hit;
@@ -89,6 +95,8 @@ public class WeaponShoot : MonoBehaviour
             weaponAudio.PlayClip(shootClips[Random.Range(0, shootClips.Length)], Random.Range(0.8f, 1));
 
             weaponAmmo.BulletsInMag--;
+            
+            StartCoroutine(weaponDatabase.QueryShot(transform.position, hit.point, hit.transform != null ? hit.transform.name : "Nothing"));
         }
         else
         {
