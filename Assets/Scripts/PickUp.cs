@@ -1,6 +1,6 @@
 ﻿public class PickUp : Interactable
 {
-    protected override void Interect()
+    protected override void Interact()
     {
         
     }

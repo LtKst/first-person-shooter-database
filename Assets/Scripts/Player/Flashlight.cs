@@ -16,7 +16,7 @@ public class Flashlight : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetButtonDown("Flashlight"))
         {
             flashlight.enabled = !flashlight.enabled;
             audioSource.PlayOneShot(flashlightClip);
