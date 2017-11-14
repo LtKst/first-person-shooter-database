@@ -4,6 +4,8 @@ using UnityEngine.AI;
 
 public class EnemyDeath : MonoBehaviour
 {
+    private float health = 100;
+
     private EnemyAudio enemyAudio;
 
     private List<Rigidbody> rigidBodies = new List<Rigidbody>();
@@ -30,13 +32,32 @@ public class EnemyDeath : MonoBehaviour
         }
     }
 
-    public void Die()
+    public void TakeDamage(float damageAmount, bool headShot)
     {
         if (isDead)
         {
             return;
         }
 
+        enemyAudio.PlayClip(deathClip);
+
+        if (headShot)
+        {
+            Die();
+        }
+        else
+        {
+            health -= damageAmount;
+
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
+    private void Die()
+    {
         // pls fix
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<Animator>().enabled = false;
@@ -45,8 +66,6 @@ public class EnemyDeath : MonoBehaviour
         {
             rigidBodies[i].isKinematic = false;
         }
-
-        enemyAudio.PlayClip(deathClip);
 
         isDead = true;
     }
