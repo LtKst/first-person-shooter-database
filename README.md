@@ -6,7 +6,7 @@ This is a first person shooter prototype with a database & raycasting made in <a
 
 * Programmers
   * Koen Sparreboom
-  * <a href=""https://github.com/23448">Jordan Salvador</a>
+  * <a href="https://github.com/23448">Jordan Salvador</a>
 
 ---
 
