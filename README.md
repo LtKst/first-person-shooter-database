@@ -8,6 +8,15 @@ This is a first person shooter prototype with a database & raycasting made in <a
   * Koen Sparreboom
   * <a href="https://github.com/23448">Jordan Salvador</a>
 
+## Database
+
+<img src="https://i.imgur.com/wPvg5Xg.png">
+
+What we use for the player ID:
+```csharp
+SystemInfo.deviceUniqueIdentifier.GetHashCode()
+```
+
 ---
 
 <img src="https://www.ma-web.nl/static/vector/Logo_blok.svg" width="48">
