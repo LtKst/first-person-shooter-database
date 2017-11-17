@@ -10,7 +10,7 @@ This is a first person shooter prototype with a database & raycasting made in <a
 
 ## Database
 
-<img src="https://i.imgur.com/wPvg5Xg.png">
+<img src="https://i.imgur.com/QdXqAJx.png">
 
 What we use for the player ID:
 ```csharp
